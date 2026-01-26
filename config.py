@@ -3,6 +3,7 @@ Configuration for Riga apartment listing monitor.
 """
 
 # Price filter (EUR)
+MIN_PRICE = 250
 MAX_PRICE = 500
 
 # Size filter (m²)

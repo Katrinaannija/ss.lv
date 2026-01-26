@@ -7,7 +7,7 @@ import re
 from typing import Optional
 
 from src.scraper import Listing
-from config import MAX_PRICE, MIN_SIZE, MAX_STREET_NUMBER, ALLOWED_STREETS
+from config import MIN_PRICE, MAX_PRICE, MIN_SIZE, MAX_STREET_NUMBER, ALLOWED_STREETS
 
 
 def normalize_street_name(street: str) -> str:
@@ -82,11 +82,11 @@ def get_matching_street(address: str) -> Optional[str]:
 
 
 def filter_by_price(listing: Listing) -> bool:
-    """Check if listing is within price limit."""
+    """Check if listing is within price range (250-500 EUR)."""
     if listing.price_eur is None:
-        # If price is unknown, include it (will be checked manually)
-        return True
-    return listing.price_eur <= MAX_PRICE
+        # Reject listings without price
+        return False
+    return MIN_PRICE <= listing.price_eur <= MAX_PRICE
 
 
 def filter_by_size(listing: Listing) -> bool:
@@ -136,7 +136,10 @@ def apply_all_filters(listings: list[Listing]) -> list[Listing]:
             # Debug output for rejected listings
             reasons = []
             if not price_ok:
-                reasons.append(f"price={listing.price_eur}")
+                if listing.price_eur is None:
+                    reasons.append("no price")
+                else:
+                    reasons.append(f"price={listing.price_eur} (need {MIN_PRICE}-{MAX_PRICE})")
             if not size_ok:
                 reasons.append(f"size={listing.size_m2}")
             if not street_ok:
