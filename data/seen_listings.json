@@ -1,68 +1,32 @@
 {
   "seen_ids": [
-    "eolkb",
-    "bejfde",
-    "blelk",
-    "ehjnj",
-    "afjnn",
-    "dnlgb",
-    "clkon",
-    "cmmdi",
-    "ahxkp",
-    "ajifb",
-    "afdfm",
-    "aghbi",
-    "accbi",
-    "bdxcb",
-    "doddh",
     "cegld",
     "bekbmk",
-    "ebkgg",
+    "belcjb",
+    "aghbi",
+    "ehjnj",
+    "afjnn",
+    "bejfde",
+    "clkon",
     "djkpg",
-    "fhjlc",
-    "giild",
-    "adlop",
-    "cxdml",
+    "doddh",
+    "afdfm",
+    "cmmdi",
     "cknbh",
-    "belcjb"
+    "dnlgb",
+    "adlop",
+    "ebkgg",
+    "ajifb",
+    "fhjlc",
+    "accbi",
+    "bdxcb",
+    "ahxkp",
+    "cxdml",
+    "eolkb",
+    "blelk",
+    "giild"
   ],
-  "last_updated": "2026-01-26T09:49:39.068344",
-  "last_new_count": 5,
-  "recent_listings": [
-    {
-      "id": "ebkgg",
-      "title": "Piedāvājam īrēt gaišu studio tipo dzīvokli renovētā mājā Tērbata",
-      "price": 500.0,
-      "size": 31.0,
-      "added": "2026-01-26T09:49:39.068354"
-    },
-    {
-      "id": "afjnn",
-      "title": "Unique Bright Studio in the Very City Centre\r\n\r\n1st floor, above",
-      "price": 450.0,
-      "size": 30.0,
-      "added": "2026-01-26T09:49:39.068357"
-    },
-    {
-      "id": "adlop",
-      "title": "Хозяин сдает отремонтированную квартиру в реновированном доме на",
-      "price": 450.0,
-      "size": 50.0,
-      "added": "2026-01-26T09:49:39.068359"
-    },
-    {
-      "id": "cmmdi",
-      "title": "Izīrējam dzīvokli Rīgas centrā, 3 istabas, divas istabas izolēta",
-      "price": 440.0,
-      "size": 55.0,
-      "added": "2026-01-26T09:49:39.068360"
-    },
-    {
-      "id": "accbi",
-      "title": "Сдаётся 3-комнатная квартира. Гостиная соединена вместе с кухней",
-      "price": 450.0,
-      "size": 89.0,
-      "added": "2026-01-26T09:49:39.068361"
-    }
-  ]
+  "last_updated": "2026-01-26T10:11:00.301694",
+  "last_new_count": 0,
+  "recent_listings": []
 }
