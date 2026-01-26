@@ -1,0 +1,69 @@
+name: Apartment Monitor
+
+on:
+  # Run every 3 hours
+  schedule:
+    - cron: '0 */3 * * *'
+
+  # Allow manual trigger
+  workflow_dispatch:
+    inputs:
+      pages:
+        description: 'Number of pages to scrape'
+        required: false
+        default: '3'
+      dry_run:
+        description: 'Dry run (no notifications)'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+
+    # Grant write permission to commit state file
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Fetch all history so we can push
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run apartment monitor
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          if [ "${{ github.event.inputs.dry_run }}" == "true" ]; then
+            python -m src.main --pages ${{ github.event.inputs.pages || 3 }} --dry-run
+          else
+            python -m src.main --pages ${{ github.event.inputs.pages || 3 }}
+          fi
+
+      - name: Commit updated state
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          # Check if there are changes to commit
+          if git diff --quiet data/seen_listings.json 2>/dev/null; then
+            echo "No changes to state file"
+          else
+            git add data/seen_listings.json
+            git commit -m "Update seen listings state [skip ci]" || echo "Nothing to commit"
+            git push
+          fi
