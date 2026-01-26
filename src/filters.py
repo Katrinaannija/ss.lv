@@ -50,6 +50,7 @@ def extract_street_number(address: str) -> Optional[int]:
 def is_allowed_street(address: str) -> bool:
     """
     Check if the address is on one of the allowed streets.
+    Address format from ss.lv is typically "Street Name 123" or "Street Name".
     """
     if not address:
         return False
@@ -58,7 +59,12 @@ def is_allowed_street(address: str) -> bool:
 
     for street in ALLOWED_STREETS:
         normalized_street = normalize_street_name(street)
-        if normalized_street in normalized_address:
+
+        # Check if the address starts with or contains the street name
+        if normalized_address.startswith(normalized_street):
+            return True
+        # Also check if street name appears at word boundary
+        if f" {normalized_street}" in f" {normalized_address}":
             return True
 
     return False
@@ -75,7 +81,9 @@ def get_matching_street(address: str) -> Optional[str]:
 
     for street in ALLOWED_STREETS:
         normalized_street = normalize_street_name(street)
-        if normalized_street in normalized_address:
+        if normalized_address.startswith(normalized_street):
+            return street
+        if f" {normalized_street}" in f" {normalized_address}":
             return street
 
     return None
@@ -98,8 +106,8 @@ def filter_by_size(listing: Listing) -> bool:
 
 
 def filter_by_street(listing: Listing) -> bool:
-    """Check if listing is on an allowed street."""
-    return is_allowed_street(listing.address) or is_allowed_street(listing.title)
+    """Check if listing is on an allowed street (address field only)."""
+    return is_allowed_street(listing.address)
 
 
 def filter_by_street_number(listing: Listing) -> bool:

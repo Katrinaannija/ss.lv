@@ -170,13 +170,12 @@ def parse_listing_row(row) -> Optional[Listing]:
     # Get all cells
     cells = row.find_all('td')
 
-    if len(cells) < 6:
+    if len(cells) < 8:
         return None
 
     # Find the link to the listing
     link = row.find('a', class_='am')
     if not link:
-        # Try alternative link patterns
         link = row.find('a', href=re.compile(r'/msg/'))
 
     if not link:
@@ -195,52 +194,26 @@ def parse_listing_row(row) -> Optional[Listing]:
     listing_id = extract_listing_id(href)
     title = link.get_text(strip=True)
 
-    # Parse cells - typical order: description, street, rooms, m², floor, price
-    # The exact order may vary, so we try to be flexible
-    address = ""
-    rooms = None
-    size_m2 = None
-    floor = None
+    # ss.lv table structure (verified):
+    # [0] checkbox, [1] image, [2] description/title
+    # [3] street address, [4] rooms, [5] m², [6] floor, [7] building type
+    # [8] price/m², [9] monthly price
+
+    address = cells[3].get_text(strip=True) if len(cells) > 3 else ""
+    rooms = parse_rooms(cells[4].get_text(strip=True)) if len(cells) > 4 else None
+    size_m2 = parse_size(cells[5].get_text(strip=True)) if len(cells) > 5 else None
+    floor = cells[6].get_text(strip=True) if len(cells) > 6 else None
+
+    # Price is in the last cell (monthly rent)
     price_eur = None
-
-    # Usually: cell[0] = checkbox, cell[1] = image, cell[2] = description
-    # cell[3] = street, cell[4] = rooms, cell[5] = m², cell[6] = floor, cell[7] = price
-
-    for i, cell in enumerate(cells):
-        text = cell.get_text(strip=True)
-
-        # Skip empty cells
-        if not text:
-            continue
-
-        # Check for address (contains street names or "iela", "bulvāris")
-        if any(street_indicator in text.lower() for street_indicator in ['iela', 'bulv', 'gatve', 'šķērsiela', ',']):
-            if not address:  # Take first matching cell as address
-                address = text
-
-        # Check for price (contains € or EUR)
-        if '€' in text or 'EUR' in text or 'eur' in text.lower():
-            price_eur = parse_price(text)
-
-        # Check for size (contains m² or m2)
-        if 'm²' in text or 'm2' in text.lower():
-            size_m2 = parse_size(text)
-
-        # Check for standalone numbers that could be rooms or size
-        if text.isdigit():
-            num = int(text)
-            if num < 10 and rooms is None:  # Likely rooms
-                rooms = num
-            elif 15 <= num <= 500 and size_m2 is None:  # Likely size
-                size_m2 = float(num)
-
-        # Floor pattern (e.g., "2/5" or "3/9")
-        if re.match(r'^\d+/\d+$', text):
-            floor = text
-
-    # If we still don't have address, use title as fallback
-    if not address:
-        address = title
+    if len(cells) > 9:
+        price_text = cells[9].get_text(strip=True)
+        price_eur = parse_price(price_text)
+    elif len(cells) > 8:
+        # Fallback: check last cell
+        price_text = cells[-1].get_text(strip=True)
+        if '€' in price_text:
+            price_eur = parse_price(price_text)
 
     return Listing(
         id=listing_id,
