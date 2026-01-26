@@ -1,6 +1,98 @@
 {
-  "seen_ids": [],
-  "last_updated": null,
-  "last_new_count": 0,
-  "recent_listings": []
+  "seen_ids": [
+    "ehjnj",
+    "cegld",
+    "afdfm",
+    "aghbi",
+    "doddh",
+    "bekbmk",
+    "ajifb",
+    "cxdml",
+    "giild",
+    "clkon",
+    "dnlgb",
+    "fhjlc",
+    "eolkb",
+    "bdxcb",
+    "djkpg",
+    "bejfde",
+    "blelk",
+    "belcjb",
+    "cknbh",
+    "ahxkp"
+  ],
+  "last_updated": "2026-01-26T09:31:19.964787",
+  "last_new_count": 20,
+  "recent_listings": [
+    {
+      "id": "djkpg",
+      "title": "Tiek izīrēts 3 istabu dzīvoklis 2.stāvā ar gāzes apkuri (iespēja",
+      "price": 390.0,
+      "size": 67.0,
+      "added": "2026-01-26T09:31:19.964797"
+    },
+    {
+      "id": "ehjnj",
+      "title": "Īpašnieks izīrē gaišu 2 istabu dzīvokli. \r\nSlēgts pagalms, Vieta",
+      "price": 420.0,
+      "size": 38.0,
+      "added": "2026-01-26T09:31:19.964800"
+    },
+    {
+      "id": "bejfde",
+      "title": "Mājīgs 2 istabu dzīvoklis Rīgas centrā – ideāla vieta, kur justi",
+      "price": 450.0,
+      "size": 42.0,
+      "added": "2026-01-26T09:31:19.964801"
+    },
+    {
+      "id": "bekbmk",
+      "title": "Tiek izīrēts jauns, moderns 4 -istabu dzīvoklis renovētā jūgends",
+      "price": null,
+      "size": 100.0,
+      "added": "2026-01-26T09:31:19.964802"
+    },
+    {
+      "id": "ahxkp",
+      "title": "Īpašnieks izīrē izolētu 2 istabu dzīvokli klusajā centrā. Dzīvok",
+      "price": 450.0,
+      "size": 57.0,
+      "added": "2026-01-26T09:31:19.964804"
+    },
+    {
+      "id": "cegld",
+      "title": "Plašs 2-istabu dzīvoklis pēc kosmētiskā remonta Rīgas centrā sta",
+      "price": 500.0,
+      "size": 69.0,
+      "added": "2026-01-26T09:31:19.964805"
+    },
+    {
+      "id": "cxdml",
+      "title": "Izīreju divistabu dzīvokli Rīgas centra, Valdemara ielā\r\nDzīvokļ",
+      "price": 500.0,
+      "size": 69.0,
+      "added": "2026-01-26T09:31:19.964806"
+    },
+    {
+      "id": "ajifb",
+      "title": "Iilgtermiņā izīrējam saulainu un mājīgu divistabu dzīvokli Ganīb",
+      "price": 500.0,
+      "size": 50.0,
+      "added": "2026-01-26T09:31:19.964810"
+    },
+    {
+      "id": "giild",
+      "title": "Izīrē trīsistabu dzīvokli centrā, Tērbatas ielā 68. Dzīvoklis ap",
+      "price": 500.0,
+      "size": 69.0,
+      "added": "2026-01-26T09:31:19.964811"
+    },
+    {
+      "id": "eolkb",
+      "title": "Pagalma māja, slēgta teritorija, ieeja no pagalma, guļamistabu s",
+      "price": 450.0,
+      "size": 55.0,
+      "added": "2026-01-26T09:31:19.964813"
+    }
+  ]
 }
