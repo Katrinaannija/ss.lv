@@ -10,7 +10,7 @@ MAX_PRICE = 500
 MIN_SIZE = 30
 
 # Street number filter (lower/central numbers only)
-MAX_STREET_NUMBER = 80
+MAX_STREET_NUMBER = 100
 
 # Streets to monitor in Riga centre
 # These are the allowed streets - listings must be on one of these
@@ -41,6 +41,38 @@ ALLOWED_STREETS = [
     "A. Čaka",   # Another short form
     "Stabu",
     "Kungu",
+    # New streets
+    "Sporta",
+    "Zaļā",
+    "Emila Melngaiļa",
+    "Melngaiļa",  # Short form
+    "Alberta",
+    "Avotu",
+    "Jeruzalemes",
+    "Jura Alunāna",
+    "Alunāna",   # Short form
+    "Nikolaja Rēriha",
+    "Rēriha",    # Short form
+    "Mednieku",
+    "Lenču",
+    "Rūpniecības",
+    "Vīlandes",
+    "Ausekļa",
+    "Citadeles",
+    "Miķeļa",
+    "Republikas",
+    "Muitas",
+    "Noliktavas",
+    "Jēkaba",
+    "Pils",
+    "Zigfrīda Annas Meierovica",
+    "Z.A. Meierovica",  # Short form
+    "Meierovica",       # Short form
+    "Ernesta Birznieka-Upīša",
+    "Birznieka-Upīša",  # Short form
+    "Pērses",
+    "Akas",
+    "Martas",
 ]
 
 # ss.lv URL for Riga centre apartment rentals
